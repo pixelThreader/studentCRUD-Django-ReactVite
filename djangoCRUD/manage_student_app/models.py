@@ -1,12 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-
 class Student(models.Model):
 
+    user = models
     sno = models.AutoField(primary_key=True, db_index=True)
-    name = models.CharField(max_length=100, default="undefined", null=True, db_index=True)
+    admission_no = models.CharField(max_length=100, default="undefined", unique=True, null=True, db_index=True)
+    name = models.CharField(max_length=100, default="undefined", null=True)
     age = models.IntegerField(default=5, null=True)
     profile_img = models.ImageField(upload_to="static/images", default="static/images/default.png", null=True)
     class_name = models.CharField(max_length=100, default="undefined", null=True)
@@ -14,7 +16,6 @@ class Student(models.Model):
     roll_no = models.CharField(max_length=100, default="undefined", null=True)
     date_of_addmission = models.DateField(auto_now_add=True, null=True)
     dob = models.DateField(auto_now_add=True, null=True)
-    admission_no = models.CharField(max_length=100, default="undefined", null=True)
     about = models.TextField(default="A student of XYZ school.", null=True)
     fathers_name = models.CharField(max_length=500, default="undefined", null=True, db_index=True)
     mothers_name = models.CharField(max_length=500, default="undefined", null=True, db_index=True)
