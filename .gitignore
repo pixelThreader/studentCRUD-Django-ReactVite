@@ -1,0 +1,25 @@
+# Logs
+/django-crud-frontend/logs
+/django-crud-frontend/*.log
+/django-crud-frontend/npm-debug.log*
+/django-crud-frontend/yarn-debug.log*
+/django-crud-frontend/yarn-error.log*
+/django-crud-frontend/pnpm-debug.log*
+/django-crud-frontend/lerna-debug.log*
+
+/django-crud-frontend/node_modules
+/django-crud-frontend/dist
+/django-crud-frontend/dist-ssr
+/django-crud-frontend/*.local
+
+# Editor directories and files
+venv
+.vscode
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
