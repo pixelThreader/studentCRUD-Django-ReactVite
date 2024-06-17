@@ -1,52 +1,52 @@
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
 from rest_framework.parsers import JSONParser
-from .serializers import StudentSerializer
+from rest_framework import status
+from django.http import JsonResponse
 from .models import Student
+from .serializers import StudentSerializer
 
 # Create your views here.
 
-@csrf_exempt
+@api_view(['POST'])
 def addStudent(request):
     if request.method == 'POST':
         student_data = JSONParser().parse(request)
         student_serializer = StudentSerializer(data=student_data)
         if student_serializer.is_valid():
             student_serializer.save()
-        name = request.POST.get('')
-        age = request.POST.get('')
-        profile_img = request.POST.get('')
-        class_name = request.POST.get('')
-        address = request.POST.get('')
-        roll_no = request.POST.get('')
-        date_of_addmission = request.POST.get('')
-        dob = request.POST.get('')
-        admission_no = request.POST.get('')
-        about = request.POST.get('')
-        fathers_name = request.POST.get('')
-        mothers_name = request.POST.get('')
-        phone_num = request.POST.get('')
-        phone_num_alt = request.POST.get('')
-        phone_gardian = request.POST.get('')
-        is_active = request.POST.get('')
+            return JsonResponse({
+                'student_status': student_serializer.data,
+                'status': 'Success',
+                'status_code': 200
+            }, status=status.HTTP_200_OK)
+        else:
+            return JsonResponse({
+                'student_status': student_serializer.errors,
+                'status': 'Bad Request',
+                'status_code': 400
+            }, status=status.HTTP_400_BAD_REQUEST)
 
+
+
+@api_view(['POST', 'GET'])
 def giveMeMyProfile(request, username):
     if request.method == 'GET':
         target_student = Student.objects.get(username = username)
         if target_student is not None:
             stu_tgt = StudentSerializer(target_student, many=True)
             return JsonResponse({
-                'student_deleted': stu_tgt.data,
+                'student_status': stu_tgt.data,
                 'status': 'Success',
                 'status_code': 200
             }, safe=False)
         else:
             return JsonResponse({
-                'student_deleted': 'No student found in the DataBase',
+                'student_status': 'No student found in the DataBase',
                 'status': 'Bad Request',
                 'status_code': 400
             })
 
+@api_view(['POST', 'GET'])
 def deleteMyProfile(request):
     if request.method == 'POST':
         stuaddno = request.POST.get('')
@@ -61,18 +61,18 @@ def deleteMyProfile(request):
             target_student.delete()
             stu_tgt = StudentSerializer(target_student, many=True)
             return JsonResponse({
-                'student_deleted': stu_tgt.data,
+                'student_status': stu_tgt.data,
                 'status': 'Success',
                 'status_code': 200
             }, safe=False)
         else:
             return JsonResponse({
-                'student_deleted': 'No student found in the DataBase',
+                'student_status': 'No student found in the DataBase',
                 'status': 'Bad Request',
                 'status_code': 400
             })
 
-
+@api_view(['POST', 'GET'])
 def editMyProfile(request):
     if request.method == 'POST':
         stuaddno = request.POST.get('')
@@ -87,13 +87,13 @@ def editMyProfile(request):
             target_student.delete()
             stu_tgt = StudentSerializer(target_student, many=True)
             return JsonResponse({
-                'student_deleted': stu_tgt.data,
+                'student_status': stu_tgt.data,
                 'status': 'Success',
                 'status_code': 200
             }, safe=False)
         else:
             return JsonResponse({
-                'student_deleted': 'No student found in the DataBase',
+                'student_status': 'No student found in the DataBase',
                 'status': 'Bad Request',
                 'status_code': 400
             })

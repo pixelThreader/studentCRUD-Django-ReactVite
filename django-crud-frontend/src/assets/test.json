@@ -1,0 +1,65 @@
+{
+    "employee_id": "b8b1fee7-0903-4e0b-bb1f-0ec3b57e9785",
+    "first_name": "Rebecca",
+    "last_name": "Smith",
+    "email": "carmen28@example.net",
+    "phone_number": "380-316-0641",
+    "address": {
+        "street": "892 Sara Harbor Suite 224",
+        "city": "Cervantesfort",
+        "state": "West Virginia",
+        "zip_code": "50269",
+        "country": "Japan"
+    },
+    "department": "Sales",
+    "job_title": "Sales Representative",
+    "salary": 9401582.86,
+    "hire_date": "2017-12-30",
+    "employment_type": "Work-From-Home",
+    "date_of_birth": "1992-12-29",
+    "social_security_number": "254-19-2512",
+    "profile_image": "https://picsum.photos/750/750",
+    "emergency_contact": {
+        "name": "Adam Ford",
+        "relationship": "Sibling",
+        "phone_number": "+1-779-573-9846x750"
+    },
+    "education": {
+        "highest_degree": "Certificate in Real Estate",
+        "university": "Adams, Morales and Le",
+        "graduation_year": "2015"
+    },
+    "work_experience": [
+        {
+            "company": "Blackburn, Harris and Payne",
+            "job_title": "System Administrator",
+            "start_date": "2018-05-01",
+            "end_date": "2020-08-09"
+        }
+    ],
+    "skills": [
+        "Make",
+        "Psychiatric nurse",
+        "Engineer, maintenance",
+        "Librarian, public",
+        "Engineer, manufacturing systems",
+        "Designer, industrial/product"
+    ],
+    "certifications": [
+        {
+            "name": "Certified Research officer, government",
+            "issuing_organization": "Espinoza-Fernandez",
+            "issue_date": "2022-10-22"
+        }
+    ],
+    "languages": [
+        {
+            "language": "English",
+            "proficiency": "Native"
+        },
+        {
+            "language": "Japanese",
+            "proficiency": "Advanced"
+        }
+    ]
+}

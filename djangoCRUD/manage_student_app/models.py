@@ -1,11 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
 
 # Create your models here.
 
 class Student(models.Model):
 
-    user = models
+    user = models.CharField(max_length=100, unique=True, db_index=True,default='anonymous', null=True)
     sno = models.AutoField(primary_key=True, db_index=True)
     admission_no = models.CharField(max_length=100, default="undefined", unique=True, null=True, db_index=True)
     name = models.CharField(max_length=100, default="undefined", null=True)
