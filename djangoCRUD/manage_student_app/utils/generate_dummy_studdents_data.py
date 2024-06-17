@@ -1,5 +1,4 @@
-# ! pip install faker
-
+# pip install faker
 
 import json
 from faker import Faker
@@ -8,12 +7,46 @@ import concurrent.futures
 import threading
 import time
 
+lis_female_profs = [
+    '/static/profiles/user-female.jpg',
+    '/static/profiles/user-female2.jpg',
+    '/static/profiles/user-female3.jpg',
+    '/static/profiles/user-female4.jpg',
+    '/static/profiles/user-female5.jpg',
+    '/static/profiles/user-female6.jpg',
+    '/static/profiles/user-female7.jpg',
+    '/static/profiles/user-female8.jpg',
+    '/static/profiles/user-female9.jpg',
+    '/static/profiles/user-female10.jpg'
+]
+
+lis_male_profs = [
+    '/static/profiles/user-male.jpg',
+    '/static/profiles/user-male2.jpg',
+    '/static/profiles/user-male3.jpg',
+    '/static/profiles/user-male4.jpg',
+    '/static/profiles/user-male5.jpg',
+    '/static/profiles/user-male6.jpg',
+    '/static/profiles/user-male7.jpg',
+    '/static/profiles/user-male8.jpg',
+    '/static/profiles/user-male9.jpg',
+    '/static/profiles/user-male10.jpg'
+]
+
 fake = Faker()
 
 sno_counter = 1
 used_usernames = set()
 counter_lock = threading.Lock()
 username_lock = threading.Lock()
+
+def getUserProfile(gender):
+    if gender == 'female':
+        return random.choice(lis_female_profs)
+    elif gender == 'male':
+        return random.choice(lis_male_profs)
+    else:
+        return '/static/profiles/user.jpg'
 
 def generate_unique_username():
     while True:
@@ -28,13 +61,24 @@ def generateStudent():
     with counter_lock:
         sno = sno_counter
         sno_counter += 1
+
+    gender = random.choice(['male', 'female'])
+    if gender == 'male':
+        first_name = fake.first_name_male()
+    else:
+        first_name = fake.first_name_female()
+
+    last_name = fake.last_name()
+    name = f"{first_name} {last_name}"
+
     student = {
         'user': generate_unique_username(),
         'sno': sno,
         'admission_no': fake.unique.uuid4(),
-        'name': fake.first_name() + ' ' + fake.last_name(),
+        'name': name,
         'age': random.choice([15, 16, 17, 18]),
-        'profile_img': fake.image_url(),
+        'gender': gender,
+        'profile_img': getUserProfile(gender),
         'class_name': fake.random_element(elements=('10', '11', '12')),
         'address': fake.address(),
         'roll_no': fake.random_int(min=1, max=100),
