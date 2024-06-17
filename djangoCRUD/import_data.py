@@ -19,6 +19,7 @@ def import_students(json_file):
                 admission_no=item['admission_no'],
                 name=item['name'],
                 age=item['age'],
+                gender=item['gender'],
                 profile_img=item['profile_img'],
                 class_name=item['class_name'],
                 address=item['address'],
@@ -31,7 +32,7 @@ def import_students(json_file):
                 phone_num=item['phone_num'],
                 phone_num_alt=item['phone_num_alt'],
                 phone_gardian=item['phone_gardian'],
-                isactive=item['isactive'],
+                isactive=item['is_active'],
             )
             student.save()
     print('Successfully imported data')

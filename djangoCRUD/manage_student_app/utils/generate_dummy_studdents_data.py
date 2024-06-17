@@ -90,7 +90,7 @@ def generateStudent():
         'phone_num': fake.phone_number(),
         'phone_num_alt': fake.phone_number(),
         'phone_gardian': fake.phone_number(),
-        'isactive': fake.boolean(),
+        'is_active': fake.boolean(),
     }
     return student
 
@@ -121,9 +121,9 @@ def main(total_records, batch_size, file_name):
 
     # Remove the trailing comma and close the JSON array
     with open(file_name, 'rb+') as f:
-        f.seek(-1, 2)  # Move the cursor to the second last byte
-        f.truncate()   # Truncate the file to remove the last comma
-        f.write(b']')  # Write the closing bracket
+        f.seek(-1, 2)
+        f.truncate()
+        f.write(b']')
 
     end_time = time.time()
     print(f"Time taken: {end_time - start_time} seconds")
