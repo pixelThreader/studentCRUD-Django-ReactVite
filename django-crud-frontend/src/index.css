@@ -3,10 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
-
+:root {
+    --base: #0a3548;
+}
 
 body {
-  font-family: "Ubuntu", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: var(--base);
+}
+
+.header-s-dbms {
+    background-color: #2B6572;
 }
