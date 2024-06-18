@@ -16,27 +16,23 @@ import Search from "./pages/Search";
 export default function App() {
     return (
         <Router>
-            <div className="h-screen w-full p-2">
+            <div className="h-screen w-full flex flex-col p-2">
                 <LoadingBar />
-                <div className="h-full w-full overflow-hidden rounded-md">
-                    <Header />
-                    <h1 className="text-3xl font-bold underline text-lime-400">
-                        Hello world!
-                    </h1>
-                    <main className="container flex">
-                        <Sidebar />
-                        <section className="Route_view flex-grow overflow-y-auto overflow-hidden">
+                <Header className="flex-shrink-0 mb-2" />
+                <div className="flex flex-1 overflow-hidden my-2">
+                    <Sidebar className="flex-shrink-0 w-32 me-2" />
+                    <main className="flex-1  ms-2 p-4 h-full header-s-dbms rounded-md overflow-hidden">
+                        <div className="container h-full overflow-y-auto scrollbar">
                             <Routes>
                                 <Route exact path="/" element={<Home />} />
                                 <Route path="/add-student" element={<AddStudent />} />
                                 <Route path="/list" element={<List />} />
                                 <Route path="/search" element={<Search />} />
                             </Routes>
-                        </section>
+                        </div>
                     </main>
-                    <hr />
-                    <Footer />
                 </div>
+                <Footer className="flex-shrink-0 mt-2" />
             </div>
         </Router>
     );
