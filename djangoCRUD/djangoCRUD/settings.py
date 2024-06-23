@@ -131,6 +131,14 @@ STATICFILES_URLS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# CORS ORIGIN ALLOWENCE
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_ALL_HEADERS = True
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+]
+
+CORS_ALLOW_ALL_ORIGINS = False 
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 50,
+}
