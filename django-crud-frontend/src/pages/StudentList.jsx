@@ -3,7 +3,7 @@ import StudentCard from '../components/StudentCard'
 import axios from "axios";
 import '../assets/css/Pagination.css';
 
-function StudentList() {
+function StudentList(props) {
     const [students, setStudents] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -12,13 +12,14 @@ function StudentList() {
 
     const fetchStudents = async (page) => {
         try {
-            const response = await axios.get(`http://localhost:8000/get-students/?page=${page}`);
+            const response = await axios.get(`${props.url}/get-students/?page=${page}`);
             setStudents(response.data.results);
-            console.log(response.data.results);
+            console.log(props.url, response.data.results);
             setTotalPages(Math.ceil(response.data.count / pageSize));
             setTotalStudents(response.data.count);
         } catch (error) {
             console.error('Error fetching students:', error);
+            $('#contentwa').text(error)
         }
     };
 
@@ -104,7 +105,7 @@ function StudentList() {
                     <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">Our Students</h1>
                     <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
                 </div>
-                <div className="flex flex-wrap mt-6 sm:space-x-2 sm:space-y-0 space-y-2">
+                <div className="flex flex-wrap mt-6 sm:space-x-2 sm:space-y-0 space-y-2 mb-10">
                     <div className="w-full sm:w-1/4 px-2">
                         <select className="w-full bg-gray-800 bg-opacity-60 rounded-lg px-4 py-2 border border-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
                             <option>Class</option>
@@ -122,7 +123,7 @@ function StudentList() {
                         <button className="w-full bg-purple-600 text-white rounded-lg px-4 py-2 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Search</button>
                     </div>
                 </div>
-                <div className="flex flex-wrap -m-2">
+                <div className="flex flex-wrap -m-2" id='contentwa'>
                     {students.map((student) => (
                         <StudentCard key={student.sno}  {...student} />
                     ))}

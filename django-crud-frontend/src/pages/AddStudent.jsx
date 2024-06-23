@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AddStudent() {
+function AddStudent(props) {
     return (
         <div>
             This is add student page!!!!!

@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-_3rno&g$ni0vc8lyc+t%-+(wfdqepc#m)mt9qf^t29rd_)!g$k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1', 'f451-157-35-78-113.ngrok-free.app']
 
 
 # Application definition
@@ -130,10 +130,14 @@ STATICFILES_URLS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://f451-157-35-78-113.ngrok-free.app',  # Add your Ngrok URL here
+]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
+    'http://192.168.43.99:5173',
+    'https://3769-157-35-78-113.ngrok-free.app',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False 

@@ -20,9 +20,9 @@ def getDBDetails(request):
 @api_view(['GET', 'POST'])
 def getStudent(request):
     if request.method == 'GET':
-        queryset = Student.objects.all().order_by('sno')  # Ensure the queryset is ordered
+        queryset = Student.objects.all().order_by('sno')
         paginator = PageNumberPagination()
-        paginator.page_size = 50  # Set page size
+        paginator.page_size = 50
         result_page = paginator.paginate_queryset(queryset, request)
         serializer = StudentSerializer(result_page, many=True)
         return paginator.get_paginated_response(serializer.data)
@@ -58,8 +58,9 @@ def addStudent(request):
 
 @api_view(['POST', 'GET'])
 def giveMeMyProfile(request, username):
+    username = username.replace('@', '')
     try:
-        student = Student.objects.get(username=username)
+        student = Student.objects.get(user=username)
     except Student.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
     

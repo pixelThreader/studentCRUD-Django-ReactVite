@@ -11,26 +11,34 @@ import AddStudent from "./pages/AddStudent";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 import StudentList from "./pages/StudentList";
+import Profile from "./pages/Profile";
 
 export default function App() {
 
+    // let base_url = 'http://localhost:8000';
+    let base_url = 'https://f451-157-35-78-113.ngrok-free.app';
+    // let base_url = 'http://192.168.43.99:8000';
+
     return (
         <Router>
-            <div className="h-screen w-full flex flex-col p-2">
+            <div className="h-screen xl:container max-w-full mx-auto flex flex-col p-2">
                 <LoadingBar />
                 <Header className="flex-shrink-0 mb-2" />
-                <div className="flex flex-1 overflow-hidden my-2">
-                    <Sidebar className="flex-shrink-0 w-32 me-2" />
-                    <main className="flex-1 ms-2 p-4 h-full header-s-dbms rounded-md overflow-hidden">
+                <div className="flex flex-1 overflow-hidden my-2 gap-2">
+
+                    <main className="flex-1 p-4 h-full header-s-dbms rounded-md overflow-hidden">
                         <div className="container h-full overflow-y-auto scrollbar">
                             <Routes>
-                                <Route exact path="/" element={<Home />} />
-                                <Route path="/add-student" element={<AddStudent />} />
-                                <Route path="/list" element={<StudentList />} />
-                                <Route path="/search" element={<Search />} />
+                                <Route path="/" element={<Home url={base_url} />} />
+                                <Route path="/:user" element={<Profile url={base_url} />} />
+                                <Route path="/add-student" element={<AddStudent url={base_url} />} />
+                                <Route path="/list" element={<StudentList url={base_url} />} />
+                                <Route path="/search" element={<Search url={base_url} />} />
                             </Routes>
                         </div>
                     </main>
+
+                    <Sidebar className="flex-shrink-0 w-32" />
                 </div>
                 <Footer className="flex-shrink-0 mt-2" />
             </div>

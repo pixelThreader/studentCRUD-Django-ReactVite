@@ -6,5 +6,5 @@ urlpatterns = [
     path('create-student/', views.addStudent, name='add_student'),
     path('delete-student/', views.deleteMyProfile, name='add_student'),
     path('edit-student/', views.editMyProfile, name='add_student'),
-    path('@<str:username>/', views.giveMeMyProfile, name='add_student'),
+    path('<str:username>/', views.giveMeMyProfile, name='add_student'),
 ]
